@@ -229,6 +229,14 @@ struct hostent **result, int *h_errnop
 	int sockfd, int backlog
 #define LIBC_LISTEN_ARGS sockfd, backlog
 
+/* accept4(2) */
+#define LIBC_ACCEPT4_NAME accept4
+#define LIBC_ACCEPT4_NAME_STR XSTR(LIBC_ACCEPT4_NAME)
+#define LIBC_ACCEPT4_RET_TYPE int
+#define LIBC_ACCEPT4_SIG \
+	int sockfd, struct sockaddr *addr, socklen_t *addrlen, int flags
+#define LIBC_ACCEPT4_ARGS sockfd, addr, addrlen, flags
+
 #else
 #error "OS not supported."
 #endif /* __linux__, __GLIBC__ , __FreeBSD__, __darwin__, __NetBSD__ */
@@ -241,14 +249,6 @@ struct hostent **result, int *h_errnop
 #define LIBC_SYSCALL_RET_TYPE long int
 #define LIBC_SYSCALL_SIG long int number, ...
 #define LIBC_SYSCALL_ARGS number
-
-/* accept4(2) */
-#define LIBC_ACCEPT4_NAME accept4
-#define LIBC_ACCEPT4_NAME_STR XSTR(LIBC_ACCEPT4_NAME)
-#define LIBC_ACCEPT4_RET_TYPE int
-#define LIBC_ACCEPT4_SIG \
-	int sockfd, struct sockaddr *addr, socklen_t *addrlen, int flags
-#define LIBC_ACCEPT4_ARGS sockfd, addr, addrlen, flags
 
 #endif /* __linux__ */
 

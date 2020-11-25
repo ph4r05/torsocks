@@ -87,7 +87,9 @@ LIBC_ACCEPT_DECL
 	return tsocks_accept(LIBC_ACCEPT_ARGS);
 }
 
-#if (defined(__linux__))
+//#if (defined(__linux__))
+/* accept4(2) doesn't exists on OS X. */
+#if (!defined(__darwin__))
 
 TSOCKS_LIBC_DECL(accept4, LIBC_ACCEPT4_RET_TYPE, LIBC_ACCEPT4_SIG)
 
